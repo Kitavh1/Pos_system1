@@ -1,0 +1,46 @@
+tree_list = (['Tamboti', 'Baobab', 'Umbrella thorn', 'Yellowwood', 'Fever Tree', 'Moringa',
+             'Marula', 'Waterpear','Baobab', 'Fountain Tree', 'Papaya Tree', 'Indian Laurel', 'Moringa'])
+tree_set = set(tree_list)
+print (type(tree_set))
+print('tree_set:', tree_set )
+print('tree_list:', tree_list )
+
+day_1_trees = {"Baobab",
+    "Buffalo Thorn",
+    "Bushwillow",
+    "Jackalberry",
+    "Knob Thorn",
+    "Lala Palm",
+    "Marula Tree",
+    "Umbrella Thorn",
+    "Weeping Boer Bean",
+    "Sausage Tree"}
+
+# create day_2_trees
+day_2_trees = {"Mopane Tree",
+    "Bushwillow",
+    "Knob Thorn",
+    "Jackalberry",
+    "Nara Plant",
+    "Wild Date Palm",
+    "Natal Mahogany",
+    "Tamboti",
+    "Leadwood",
+    "Bushwillow"}
+union_result = day_1_trees.union(day_2_trees)
+print("Union:", union_result)
+
+# Intersection
+both_days = day_1_trees.intersection(day_2_trees)
+print("Intersection:", both_days)
+
+# Difference
+difference_result = day_2_trees.difference(day_1_trees)
+print("Difference:", difference_result)
+
+# One set only
+one_set_result = day_2_trees.difference(day_1_trees).union(day_1_trees.difference(day_2_trees))
+print('One set only:',one_set_result)
+
+
+#include comments in the form

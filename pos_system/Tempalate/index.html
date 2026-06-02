@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS Screens</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f6f8; color:#333; }
+    header { background:#1f2937; color:#fff; padding:16px; display:flex; justify-content:space-between; align-items:center; }
+    header nav button { background:transparent; border:0; color:#fff; margin:0 8px; cursor:pointer; font-size:14px; }
+    main { padding:24px; }
+    section { display:none; background:#fff; padding:24px; border-radius:8px; box-shadow:0 4px 14px rgba(0,0,0,0.05); }
+    section.active { display:block; }
+    .grid { display:grid; gap:16px; }
+    .card { background:#f9fafb; padding:16px; border-radius:8px; border:1px solid #e5e7eb; }
+    .field { margin-bottom:12px; }
+    .field label { display:block; margin-bottom:6px; font-weight:600; }
+    .field input, .field select { width:100%; padding:10px; border:1px solid #d1d5db; border-radius:6px; }
+    .btn { display:inline-block; padding:10px 16px; background:#2563eb; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    .table { width:100%; border-collapse:collapse; }
+    .table th, .table td { text-align:left; padding:12px; border-bottom:1px solid #e5e7eb; }
+    .table th { background:#eef2ff; }
+    .summary { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+    .summary-item { flex:1; min-width:180px; background:#eef2ff; padding:16px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong>TWO HEADS ENTREPRISE</strong>
+    </div>
+    <nav>
+      <button data-screen="login">Login</button>
+      <button data-screen="dashboard">Dashboard</button>
+      <button data-screen="products">Products</button>
+      <button data-screen="cart">Cart</button>
+      <button data-screen="checkout">Checkout</button>
+      <button data-screen="sales">Sales History</button>
+      <button data-screen="reports">Reports</button>
+    </nav>
+  </header>
+  <main>
+    
+    <section id="login" class="active">
+      <h1>Login</h1>
+      <div class="card">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="user@example.com" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" />
+        </div>
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role">
+            <option value="admin">Admin</option>
+            <option value="Cashier">Cashier</option>
+            <option value="Developer">Developer</option>  
+          </select>
+        </div>
+        <button class="btn" onclick="showScreen('dashboard')">Sign In</button>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <h1>Dashboard</h1>
+      <div class="summary">
+        <div class="summary-item">
+          <strong>Today's Sales</strong>
+          <p>$3,240</p>
+        </div>
+        <div class="summary-item">
+          <strong>Orders</strong>
+          <p>42</p>
+        </div>
+        <div class="summary-item">
+          <strong>Products</strong>
+          <p>128</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h2>Recent Activity</h2>
+          <ul>
+            <li>Order #453 shipped</li>
+            <li>New product added: Wireless Mouse</li>
+            <li>Payment received for Order #449</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Quick Actions</h2>
+          <button class="btn" onclick="showScreen('products')">View Products</button>
+          <button class="btn" style="margin-left:8px;" onclick="showScreen('cart')">Open Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <h1>Products</h1>
+      <table class="table">
+        <thead>
+          <tr><th>Product</th><th>SKU</th><th>Price</th><th>Stock</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Wireless Mouse</td><td>WM-100</td><td>$29.99</td><td>42</td><td><button class="btn" onclick="showScreen('cart')">Add</button></td></tr>
+          <tr><td>Bluetooth Keyboard</td><td>BK-210</td><td>$49.99</td><td>18</td><td><button class="btn" onclick="showScreen('cart')">Add</button></td></tr>
+          <tr><td>USB-C Hub</td><td>UH-350</td><td>$34.95</td><td>25</td><td><button class="btn" onclick="showScreen('cart')">Add</button></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cart">
+      <h1>Cart</h1>
+      <table class="table">
+        <thead>
+          <tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Wireless Mouse</td><td>1</td><td>$29.99</td><td>$29.99</td></tr>
+          <tr><td>Bluetooth Keyboard</td><td>1</td><td>$49.99</td><td>$49.99</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px; text-align:right;">
+        <strong>Subtotal: $79.98</strong>
+      </div>
+      <button class="btn" style="margin-top:16px;" onclick="showScreen('checkout')">Proceed to Checkout</button>
+    </section>
+
+    <section id="checkout">
+      <h1>Checkout</h1>
+      <div class="grid">
+        <div class="card">
+          <h2>Billing Details</h2>
+          <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="Jane Doe" /></div>
+          <div class="field"><label for="address">Address</label><input id="address" type="text" placeholder="123 Main St" /></div>
+          <div class="field"><label for="city">City</label><input id="city" type="text" placeholder="Anytown" /></div>
+          <div class="field"><label for="payment">Payment Method</label><select id="payment"><option>Credit Card</option><option>PayPal</option><option>Cash</option></select></div>
+          <button class="btn" onclick="showScreen('sales')">Complete Order</button>
+        </div>
+        <div class="card">
+          <h2>Order Summary</h2>
+          <p>Items: 2</p>
+          <p>Shipping: $5.00</p>
+          <p><strong>Total: $84.98</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sales">
+      <h1>Sales History</h1>
+      <table class="table">
+        <thead>
+          <tr><th>Date</th><th>Order</th><th>Customer</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2026-05-24</td><td>#453</td><td>Acme Co.</td><td>$124.50</td></tr>
+          <tr><td>2026-05-23</td><td>#452</td><td>Jane Smith</td><td>$79.98</td></tr>
+          <tr><td>2026-05-22</td><td>#451</td><td>John Doe</td><td>$59.00</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="reports">
+      <h1>Reports</h1>
+      <div class="summary">
+        <div class="summary-item"><strong>Monthly Revenue</strong><p>$38,240</p></div>
+        <div class="summary-item"><strong>Top Product</strong><p>Wireless Mouse</p></div>
+        <div class="summary-item"><strong>Conversion</strong><p>4.8%</p></div>
+      </div>
+      <div class="card">
+        <h2>Sales Breakdown</h2>
+        <p>View daily totals, category performance, and customer trends to improve store operations.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll('button[data-screen]');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showScreen(btn.dataset.screen);
+      });
+    });
+
+    function showScreen(id) {
+      document.querySelectorAll('main section').forEach(section => {
+        section.classList.toggle('active', section.id === id);
+      });
+      window.scrollTo(0,0);
+    }
+  </script>
+</body>
+</html> 
